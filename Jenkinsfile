@@ -11,7 +11,7 @@ pipeline {
         stage('Setup') {
             steps {
                 sh "echo 'Creating network'"
-                sh "docker network create my-network || true"
+                sh "docker network create node-network || true"
             }
         }
         stage('Docker build') {
@@ -22,8 +22,8 @@ pipeline {
         }
         stage('Docker run') {
             steps {
-                sh 'docker run -d --name node-app --network my-network node-app'
-                sh 'docker run -d --name nginx -p 80:80 --network my-network nginx'
+                sh 'docker run -d --name node-app --network node-network node-app'
+                sh 'docker run -d --name nginx -p 80:80 --network node-network nginx'
             }
         }
     }
