@@ -17,13 +17,13 @@ pipeline {
         stage('Docker build') {
             steps {
                 sh 'docker build -t node-app -f Dockerfile .'
-                // sh 'docker build -t nginx -f Dockerfile.nginx .'
+                sh 'docker build -t nginx -f Dockerfile.nginx .'
             }
         }
         stage('Docker run') {
             steps {
                 sh 'docker run -d --name node-app --network node-network node-app'
-                // sh 'docker run -d --name nginx -p 80:80 --network node-network nginx'
+                sh 'docker run -d --name nginx -p 80:80 --network node-network nginx'
             }
         }
     }
