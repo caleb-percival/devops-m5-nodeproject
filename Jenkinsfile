@@ -22,7 +22,7 @@ pipeline {
         }
         stage('Docker run') {
             steps {
-                sh 'docker run -d --name node-app --network my-network flask-app'
+                sh 'docker run -d --name node-app --network my-network node-app'
                 sh 'docker run -d --name nginx -p 80:80 --network my-network nginx'
             }
         }
